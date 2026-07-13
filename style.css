@@ -95,6 +95,41 @@ nav {
   color: var(--accent-primary);
 }
 
+/* Mobile Menu Toggle Button (Three Lines) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+.menu-toggle .bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-primary);
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Animate Hamburger into 'X' when active */
+.menu-toggle.active .bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 /* Hero Section */
 .hero {
   min-height: 100vh;
@@ -590,17 +625,52 @@ footer {
 
 @media screen and (max-width: 768px) {
   nav {
-    flex-direction: column;
-    padding: 1rem;
+    flex-direction: row;
+    padding: 1rem 5%;
   }
-  
+
+  .menu-toggle {
+    display: flex;
+  }
+
   .nav-links {
-    margin-top: 1rem;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(11, 15, 25, 0.98);
+    border-bottom: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), padding 0.3s ease;
   }
-  
+
+  .nav-links.active {
+    max-height: 300px;
+    padding: 1rem 0;
+  }
+
+  .nav-links a {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--glass-border);
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+
+  .nav-links a:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
   .hero h1 {
     font-size: 3rem;
   }

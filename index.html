@@ -26,7 +26,12 @@
   <!-- Navigation -->
   <nav>
     <div class="logo">Yeluru Manoj Kumar</div>
-    <div class="nav-links">
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <div class="nav-links" id="navLinks">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
@@ -243,6 +248,23 @@
     <p>&copy; 2026 Yeluru Manoj Kumar. Designed & Built</p>
   </footer>
 
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const links = navLinks.querySelectorAll('a');
+
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
 </body>
 
 </html>
